@@ -8,6 +8,7 @@
  * @property {string} name
  * @property {number} cost
  * @property {string} description
+ * @method   printDetails
  */
 
 function Spell(name, cost, description){
@@ -16,10 +17,10 @@ function Spell(name, cost, description){
   this.description = description;
 
   /**
+   * @method printDetails
+   * 
    * Print out all spell details and format it nicely.
    * The format doesnt matter, as long as it contains the spell name, cost, and description.
-   *
-   * @name printDetails
    *
    * note: using comma separated arguments for console.log() will not satisfy the tests
    * e.g. console.log(a, b, c); <-- no commas, please use string concatenation.
@@ -78,6 +79,9 @@ DamageSpell.prototype = Object.create(Spell.prototype);
  * @property {number} health
  * @property {mana} mana
  * @property {boolean} isAlive  Default value should be `true`.
+ * @method  inflictDamage
+ * @method  spendMana
+ * @method  invoke
  */
 
 function Spellcaster(name, health, mana){
@@ -87,12 +91,13 @@ function Spellcaster(name, health, mana){
   this.isAlive = true;
 
   /**
+   * @method inflictDamage
+   * 
    * The spellcaster loses health equal to `damage`.
    * Health should never be negative.
    * If the spellcaster's health drops to 0,
    * its `isAlive` property should be set to `false`.
    *
-   * @name inflictDamage
    * @param  {number} damage  Amount of damage to deal to the spellcaster
    */
   this.inflictDamage = function(damage) {
@@ -108,10 +113,11 @@ function Spellcaster(name, health, mana){
   };
 
   /**
+   * @method spendMana
+   * 
    * Reduces the spellcaster's mana by `cost`.
    * Mana should only be reduced only if there is enough mana to spend.
    *
-   * @name spendMana
    * @param  {number} cost      The amount of mana to spend.
    * @return {boolean} success  Whether mana was successfully spent.
    */
@@ -128,6 +134,8 @@ function Spellcaster(name, health, mana){
   };
 
   /**
+   * @method invoke
+   * 
    * Allows the spellcaster to cast spells.
    * The first parameter should either be a `Spell` or `DamageSpell`.
    * If it is a `DamageSpell`, the second parameter should be a `Spellcaster`.
@@ -147,7 +155,6 @@ function Spellcaster(name, health, mana){
    * Use functions you've previously created: (`inflictDamage`, `spendMana`)
    * to help you with this.
    *
-   * @name invoke
    * @param  {(Spell|DamageSpell)} spell  The spell to be cast.
    * @param  {Spellcaster} target         The spell target to be inflicted.
    * @return {boolean}                    Whether the spell was successfully cast.
